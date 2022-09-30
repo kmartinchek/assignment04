@@ -34,12 +34,20 @@ colnames(credit_feb20) <- c("state", "subprime_a", "subprime_c", "subprime_w", "
 credit_feb20 <- credit_feb20 %>%
   mutate(across(.cols = everything(), .fns = ~str_replace(., "n/a", ""))) 
 
+# remove $ from median debt variables
 credit_feb20 <- credit_feb20 %>%
-  mutate(across(.cols = !state, .fns = ~as.numeric(.))) ## works, but $ sign to be removed
+  mutate(med_debt_a = str_remove(string = med_debt_a, pattern = "\\$")) %>%
+  mutate(med_debt_c = str_remove(string = med_debt_c, pattern = "\\$")) %>%
+  mutate(med_debt_w = str_remove(string = med_debt_w, pattern = "\\$")) %>%
+  mutate(mmed_a = str_remove(string = mmed_a, pattern = "\\$")) %>%
+  mutate(mmed_c = str_remove(string = mmed_c, pattern = "\\$")) %>%
+  mutate(mmed_w = str_remove(string = mmed_w, pattern = "\\$")) 
 
+# make string data numeric
+credit_feb20 <- credit_feb20 %>%
+  mutate(across(.cols = !state, .fns = ~as.numeric(.))) 
          
 ```
-
 
 
 
@@ -47,7 +55,7 @@ credit_feb20 <- credit_feb20 %>%
 
 ```{r}
 
-## get support in adjsuting code below
+## get support in adjusting code below
 
 # remove $ signs in median debt variables
 credit_feb20 <- credit_feb20 %>%
@@ -62,6 +70,8 @@ credit_feb20 <- credit_feb20 %>%
          
 ```
 
+
+
 ## Visualization 1: Do States with Consumers Who Use More Payday Loans Have More Trouble Repaying Loans?
 
 ```{r}
@@ -70,11 +80,11 @@ credit_feb20 <- credit_feb20 %>%
 
 credit_feb20 %>%
   ggplot() +
-  geom_point(mapping = aes(x = afs_use_a, y = afs_del_a)) +
-  geom_smooth(method = lm, mapping = aes(x = afs_use_a, y = afs_del_a)) +
+  geom_point(mapping = aes(x = afs_use_a, y = afs_del_a), color = "red") +
+  geom_smooth(method = lm, mapping = aes(x = afs_use_a, y = afs_del_a), color = "blue") +
   labs(
     title = "States With More AFS Use Experience Greater Delinquencies",
-    subtitle = "State-level AFS use and AFS delinquencies",
+    subtitle = "AFS Use and AFS Delinquencies by State, February 2020",
     caption = "Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic",
     x = "Share of Consumers Using AFS",
     y = "Share of Consumers With AFS Delinquencies"
@@ -82,6 +92,51 @@ credit_feb20 %>%
 
          
 ```
+
+
+
+
+## Visualization 2: Do Communities of Color Have Poorer Credit Than Majority-White Communities in the DMV?
+
+```{r}
+
+# filter data to states in the DMV
+ dmv_credit <- credit_feb20 %>%
+  filter(state == "DC" | state == "MD" | state == "VA") %>%
+  select(state, subprime_a, subprime_c, subprime_w)
+
+# transform data set from wide to long for visualization
+ 
+  viz2 <- pivot_longer(
+    data = dmv_credit,
+    cols = c(subprime_a, subprime_c, subprime_w),
+    names_to = "community",
+    values_to = "share"
+  )
+
+# recode community variable for visualization
+  viz2 <- viz2 %>%
+  mutate(community = case_when(community == "subprime_a" ~ "all",
+                               community == "subprime_c" ~ "comm col",
+                               community == "subprime_w" ~ "white"))
+
+# stacked bar chart for each state
+  viz2 %>%
+    ggplot(aes(x = state, y = share, fill = community)) +
+    geom_bar(position = "dodge", stat = "identity") +
+    scale_fill_discrete(name = "Community", labels = c("All Communities", "Communities of Color", "Majority White Communities")) +
+    labs(
+    title = "Communities of Color in the District Have Poorer Credit Health",
+    subtitle = "Share of Consumers with Subprime Credit Scores by Community in Maryland, DC, and Virginia, February 2020",
+    caption = "Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic",
+    x = "State",
+    y = "Share of Consumers With Subprime Credit Scores"
+  ) 
+    
+         
+```
+
+
 
 
 
