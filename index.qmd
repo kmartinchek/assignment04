@@ -1,26 +1,70 @@
 ---
-title: "index"
-format: pdf
+title: "Data Science for Public Policy"
+subtitle: "Data Visualization, Quarto, and Git"
+author: "Kassandra Martinchek - KM1775"
+format: html
 editor: visual
 ---
 
-## Quarto
+## Project Introduction
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Data Details
 
-## Running Code
+Hyperlink: https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic/resource/0f812245-6b99-4f13-b7e2-e3398a7dc10b 
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
+## Clean and Prepare the Data for Visualization
 
 ```{r}
-#| echo: false
-2 * 2
+
+# load in relevant libraries for analysis
+library(readxl)
+library(tidyverse)
+library(stringr)
+
+# load in the data
+credit_feb20 <- read_excel("data/covidcredithealth_state.xlsx", sheet = "State 2020_02")
+
+# inspect the data and note that these are character strings because of n/a values
+head(credit_feb20)
+
+# rename column names to be snake case for analysis
+colnames(credit_feb20) <- c("state", "subprime_a", "subprime_c", "subprime_w", "collections_a", "collections_c", "collections_w", "med_debt_a", "med_debt_c", "med_debt_w", "cred_use_a", "cred_use_c", "cred_use_w", "stud_del_a", "stud_del_c", "stud_del_w", "cred_del_a", "cred_del_c", "cred_del_w", "auto_del_a", "auto_del_c", "auto_del_w", "mort_del_a", "mort_del_c", "mort_del_w", "afs_use_a", "afs_use_c", "afs_use_w", "afs_del_a", "afs_del_c", "afs_del_w", "score_a", "score_c", "score_w", "mmed_a", "mmed_c", "mmed_w", "medical_a", "medical_c", "medical_w")
+
+# replace n/a values in strings
+credit_feb20 <- credit_feb20 %>%
+  mutate(across(.cols = everything(), .fns = ~str_replace(., "n/a", ""))) 
+
+# remove $ signs in median debt variables
+credit_feb20 <- credit_feb20 %>%
+  mutate(across(.cols = c("med_debt_a", "med_debt_c", "med_debt_w", "mmed_a", "mmed_c", "mmed_w"), .fns = ~str_remove(string = c("med_debt_a", "med_debt_c", "med_debt_w", "mmed_a", "mmed_c", "mmed_w"), pattern = "\\$")))
+
+credit_feb20 <- credit_feb20 %>%
+  mutate(across(.cols = everything(), .fns = ~str_remove(string = c("med_debt_a", "med_debt_c", "med_debt_w", "mmed_a", "mmed_c", "mmed_w"), pattern = "\\$")))
+
+credit_feb20 <- credit_feb20 %>%
+  mutate(med_debt_a = str_remove(string = med_debt_a, pattern = "\\$"))
+
+credit_feb20 <- credit_feb20 %>%
+  mutate(across(.cols = everything(), .fns = ~as.numeric(.))) ## works, but $ sign to be removed
+
+         
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## Workshopping code below still
+
+```{r}
+
+## get support in adjsuting code below
+
+# remove $ signs in median debt variables
+credit_feb20 <- credit_feb20 %>%
+  mutate(across(.cols = c("med_debt_a", "med_debt_c", "med_debt_w", "mmed_a", "mmed_c", "mmed_w"), .fns = ~str_remove(string = c("med_debt_a", "med_debt_c", "med_debt_w", "mmed_a", "mmed_c", "mmed_w"), pattern = "\\$")))
+
+credit_feb20 <- credit_feb20 %>%
+  mutate(across(.cols = everything(), .fns = ~str_remove(string = c("med_debt_a", "med_debt_c", "med_debt_w", "mmed_a", "mmed_c", "mmed_w"), pattern = "\\$")))
+
+credit_feb20 <- credit_feb20 %>%
+  mutate(med_debt_a = str_remove(string = med_debt_a, pattern = "\\$"))
+
+         
+```
