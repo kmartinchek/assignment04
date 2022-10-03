@@ -20,6 +20,7 @@ Hyperlink: https://datacatalog.urban.org/dataset/credit-health-during-covid-19-p
 library(readxl)
 library(tidyverse)
 library(stringr)
+library(urbnthemes)
 
 # load in the data
 credit_feb20 <- read_excel("data/covidcredithealth_state.xlsx", sheet = "State 2020_02")
@@ -46,31 +47,18 @@ credit_feb20 <- credit_feb20 %>%
 # make string data numeric
 credit_feb20 <- credit_feb20 %>%
   mutate(across(.cols = !state, .fns = ~as.numeric(.))) 
-         
-```
 
-
-
-## Workshopping code below still
-
-```{r}
-
-## get support in adjusting code below
-
-# remove $ signs in median debt variables
-credit_feb20 <- credit_feb20 %>%
-  mutate(across(.cols = c("med_debt_a", "med_debt_c", "med_debt_w", "mmed_a", "mmed_c", "mmed_w"), .fns = ~str_remove(string = c("med_debt_a", "med_debt_c", "med_debt_w", "mmed_a", "mmed_c", "mmed_w"), pattern = "\\$")))
+# add in the Census regions of the US to the data
+# reference to Census regions here: https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf
 
 credit_feb20 <- credit_feb20 %>%
-  mutate(across(.cols = everything(), .fns = ~str_remove(string = c("med_debt_a", "med_debt_c", "med_debt_w", "mmed_a", "mmed_c", "mmed_w"), pattern = "\\$")))
-
-credit_feb20 <- credit_feb20 %>%
-  mutate(med_debt_a = str_remove(string = med_debt_a, pattern = "\\$"))
+  mutate(region = case_when(state == "CT" | state == "ME" | state == "MA" | state == "NH" | state == "RI" | state == "VT" | state == "NJ" | state == "NY" | state == "PA" ~ "northeast",
+                            state == "IN" | state == "IL" | state == "MI" | state == "OH" | state == "WI" | state == "IA" | state == "KS" | state == "MN" | state == "MO" | state == "NE" | state == "ND" | state == "SD" ~ "midwest", 
+                            state == "DE" | state == "DC" | state == "FL" | state == "GA" | state == "MD" | state == "NC" | state == "SC" | state == "VA" | state == "WV" | state == "AL" | state == "KY" | state == "MS" | state == "TN" | state == "AR" | state == "LA" | state == "OK" | state == "TX" ~ "south",
+                            state == "AZ" | state == "CO" | state == "ID" | state == "NM" | state == "MT" | state == "UT" | state == "NV" | state == "WY" | state == "AK" | state == "CA" | state == "HI" | state == "OR" | state == "WA" ~ "west"))
 
          
 ```
-
-
 
 ## Visualization 1: Do States with Consumers Who Use More Payday Loans Have More Trouble Repaying Loans?
 
@@ -80,21 +68,20 @@ credit_feb20 <- credit_feb20 %>%
 
 credit_feb20 %>%
   ggplot() +
-  geom_point(mapping = aes(x = afs_use_a, y = afs_del_a), color = "red") +
-  geom_smooth(method = lm, mapping = aes(x = afs_use_a, y = afs_del_a), color = "blue") +
+  geom_point(mapping = aes(x = afs_use_a, y = afs_del_a, shape = region), color = "#1696d2", size = 2)  +
+  scale_x_continuous(limits = c(0,10)) +
+  scale_y_continuous(limits = c(0, 40)) +
+  geom_smooth(method = lm, mapping = aes(x = afs_use_a, y = afs_del_a), color = "#fdbf11", linetype = "solid") +
   labs(
+    shape = "Census Region",
     title = "States With More AFS Use Experience Greater Delinquencies",
     subtitle = "AFS Use and AFS Delinquencies by State, February 2020",
     caption = "Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic",
     x = "Share of Consumers Using AFS",
     y = "Share of Consumers With AFS Delinquencies"
   ) 
-
          
 ```
-
-
-
 
 ## Visualization 2: Do Communities of Color Have Poorer Credit Than Majority-White Communities in the DMV?
 
@@ -125,6 +112,9 @@ credit_feb20 %>%
     ggplot(aes(x = state, y = share, fill = community)) +
     geom_bar(position = "dodge", stat = "identity") +
     scale_fill_discrete(name = "Community", labels = c("All Communities", "Communities of Color", "Majority White Communities")) +
+    coord_flip() +
+    theme(legend.position = "top") +
+    geom_text(aes(label = share), position = position_dodge(width = 1), hjust = -0.2, size = 3) +
     labs(
     title = "Communities of Color in the District Have Poorer Credit Health",
     subtitle = "Share of Consumers with Subprime Credit Scores by Community in Maryland, DC, and Virginia, February 2020",
@@ -137,6 +127,66 @@ credit_feb20 %>%
 ```
 
 
+
+## Visualization 3: How Do Regions Vary In Their Median Credit Scores? Is There Geographic Variation in Credit Health in the US?
+
+```{r}
+
+prime <- c("Prime")
+subprime <- c("Subprime")
+
+# create histograms of median credit score by region
+## use this code--- need to fix legend  
+credit_feb20 %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x = score_a), binwidth = 25) + 
+  scale_x_continuous(lim = c(350, 850)) +
+  geom_vline(xintercept = 600, color = "red") +
+  geom_vline(xintercept = 720, color = "blue") +
+  #geom_text(aes(x = 600, y = 1000, label = subprime), size = 1.5) +
+  scale_color_manual(values = c("600" = "red", "720" = "blue")) +
+  facet_wrap(~ region) +
+  labs(
+    title = "Southern States Have Worse Credit Health Than Other Areas of the US",
+    subtitle = "Distribution of States' Median Credit Scores by Census Region, February 2020",
+    caption = "Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic",
+    x = "State Median Credit Score",
+    y = "Number of States"
+  )
+  
+
+         
+```
+
+
+
+
+## Visualization 4: Which States Would Benefit From Expanded Policy Guidance on Medical Debt Reporting?
+
+```{r}
+
+# set urban theme
+set_urbn_defaults(style = "print")
+
+# create the visualization--- color is not working perfectly
+credit_feb20 %>%
+  mutate(med_over500 = if_else(mmed_a > 500, "#1696d2", "#fdbf11")) %>%
+  arrange(desc(mmed_a)) %>%
+  ggplot() +
+  geom_col(mapping = aes(x = mmed_a, y = reorder(state, -mmed_a), fill = med_over500)) +
+  scale_fill_discrete(labels = c("Over $500", "Under $500")) +
+    labs(
+    title = "Most States Could Benefit from Expanded Debt Limits for Medical Debt Credit Reporting",
+    subtitle = "Median Medical Debt in Collections by State, February 2020",
+    caption = "Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic",
+    x = "Median Amount of Medical Debt in Collections",
+    y = "State"
+  )
+
+## consider lollipop chart
+
+  
+```
 
 
 
