@@ -8,7 +8,13 @@ editor: visual
 
 ## Project Introduction
 
+This data project explores trends in credit and debt in U.S. states in February 2020. The goal of this project is to understand disparities in credit health between states and communities and explore the potential implications of policies designed to strengthen consumer credit health.
+
 ## Data Details
+
+This project uses data from the Urban Institute's "Credit Health during the COVID-19 Pandemic" data feature. This data is from a 2 percent random sample of deidentified consumer credit records from one of the main three credit bureaus linked to information on alternative financial service loans (such as payday, pawn shop, and auto title loans) from a Fair Credit Reporting Act regulated agency.
+
+Citation: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic
 
 Hyperlink: https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic/resource/0f812245-6b99-4f13-b7e2-e3398a7dc10b 
 
@@ -69,7 +75,7 @@ credit_feb20 <- credit_feb20 %>%
 credit_feb20 %>%
   ggplot() +
   geom_point(mapping = aes(x = afs_use_a, y = afs_del_a, shape = region), color = "#1696d2", size = 2)  +
-  scale_x_continuous(limits = c(0,10)) +
+  scale_x_continuous(limits = c(0, 10)) +
   scale_y_continuous(limits = c(0, 40)) +
   geom_smooth(method = lm, mapping = aes(x = afs_use_a, y = afs_del_a), color = "#fdbf11", linetype = "solid") +
   labs(
@@ -82,6 +88,15 @@ credit_feb20 %>%
   ) 
          
 ```
+
+This visualization shows the relationship between use of alternative financial services (AFS) and AFS delinquency rates. We see in Visualization 1 see that there is a slight positive relationship between AFS use and AFS delinquency across Census regions, where states with more consumers who use AFS services also exhibit higher AFS delinquency rates. Scholars and policymakers are concerned about how AFS use impacts consumers' financial health, given research that points to AFS use negatively impacting mental and physical health, bankruptcy, and consumers' ability to repay loans (Bhutta et al., 2016; Eisenberg-Guyot et al., 2018; Skiba & Tobacman, 2019). Consequently, policymakers have increasingly pursued policies that regulate the interest rates that lenders can charge consumers, with the goal of reducing AFS use. Visualization 1 suggests that these efforts may be associated with a reduction in AFS delinquencies, thus improving consumer's credit health as they may no longer struggle to repay high-cost loans (like AFS).
+
+Citations:
+Bhutta, N., Goldin, J., & Homonoff, T. (2016). Consumer borrowing after payday loan bans. The Journal of Law and Economics, 59(1), 225-259.
+
+Eisenberg-Guyot, J., Firth, C., Klawitter, M., & Hajat, A. (2018). From payday loans to pawnshops: Fringe banking, the unbanked, and health. Health Affairs, 37(3), 429-437.
+
+Skiba, P. M., & Tobacman, J. (2019). Do payday loans cause bankruptcy?. The Journal of Law and Economics, 62(3), 485-519.
 
 ## Visualization 2: Do Communities of Color Have Poorer Credit Than Majority-White Communities in the DMV?
 
@@ -126,68 +141,7 @@ credit_feb20 %>%
          
 ```
 
+This visualization shows how credit health, as measured by the share of consumers with subprime credit, varies among communities in the DMV. Consumers with subprime credit, or credit scores below 600, pay more to borrow funds and have constrained access to low cost credit. We see in Visualization 2 that communities of color in DC, Maryland, and Virginia have higher shares of consumers with subprime credit relative to majority-white communities. This finding reflects a history of structural racism in credit access that has persisted to present day (Kijakazi et al., 2019). Consequently, policymakers interested in addressing disparities in credit health that persist across communities  need to consider policies that explicitly address racial disparities. 
 
-
-## Visualization 3: How Do Regions Vary In Their Median Credit Scores? Is There Geographic Variation in Credit Health in the US?
-
-```{r}
-
-prime <- c("Prime")
-subprime <- c("Subprime")
-
-# create histograms of median credit score by region
-## use this code--- need to fix legend  
-credit_feb20 %>%
-  ggplot() +
-  geom_histogram(mapping = aes(x = score_a), binwidth = 25) + 
-  scale_x_continuous(lim = c(350, 850)) +
-  geom_vline(xintercept = 600, color = "red") +
-  geom_vline(xintercept = 720, color = "blue") +
-  #geom_text(aes(x = 600, y = 1000, label = subprime), size = 1.5) +
-  scale_color_manual(values = c("600" = "red", "720" = "blue")) +
-  facet_wrap(~ region) +
-  labs(
-    title = "Southern States Have Worse Credit Health Than Other Areas of the US",
-    subtitle = "Distribution of States' Median Credit Scores by Census Region, February 2020",
-    caption = "Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic",
-    x = "State Median Credit Score",
-    y = "Number of States"
-  )
-  
-
-         
-```
-
-
-
-
-## Visualization 4: Which States Would Benefit From Expanded Policy Guidance on Medical Debt Reporting?
-
-```{r}
-
-# set urban theme
-set_urbn_defaults(style = "print")
-
-# create the visualization--- color is not working perfectly
-credit_feb20 %>%
-  mutate(med_over500 = if_else(mmed_a > 500, "#1696d2", "#fdbf11")) %>%
-  arrange(desc(mmed_a)) %>%
-  ggplot() +
-  geom_col(mapping = aes(x = mmed_a, y = reorder(state, -mmed_a), fill = med_over500)) +
-  scale_fill_discrete(labels = c("Over $500", "Under $500")) +
-    labs(
-    title = "Most States Could Benefit from Expanded Debt Limits for Medical Debt Credit Reporting",
-    subtitle = "Median Medical Debt in Collections by State, February 2020",
-    caption = "Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic",
-    x = "Median Amount of Medical Debt in Collections",
-    y = "State"
-  )
-
-## consider lollipop chart
-
-  
-```
-
-
-
-
+Citations:
+Kijakazi, K., Brown, S., Charleston, D., & Runes, C. (2019). Next50 Catalyst Brief: Structural Racism. Urban Institute.
