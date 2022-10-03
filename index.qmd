@@ -145,3 +145,40 @@ This visualization shows how credit health, as measured by the share of consumer
 
 Citations:
 Kijakazi, K., Brown, S., Charleston, D., & Runes, C. (2019). Next50 Catalyst Brief: Structural Racism. Urban Institute.
+
+
+## Visualization 3: How Do Regions Vary In Their Median Credit Scores? Is There Geographic Variation in Credit Health in the US?
+
+```{r}
+
+prime <- c("Super-Prime")
+subprime <- c("Prime")
+
+# create histograms of median credit score by region
+credit_feb20 %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x = score_a), binwidth = 25) + 
+  # scale_x_continuous(lim = c(350, 850)) +
+  geom_vline(xintercept = 600, color = "red") +
+  geom_vline(xintercept = 720, color = "blue") +
+  geom_text(aes(x = 600, y = 10, label = subprime), size = 3, hjust = -0.1) +
+  geom_text(aes(x = 720, y = 10, label = prime), size = 3, hjust = -0.1) +
+  scale_color_manual(values = c("600" = "red", "720" = "blue")) +
+  facet_wrap(~ region) +
+  labs(
+    title = "Southern States Have Worse Credit Health Than Other Areas of the US",
+    subtitle = "Distribution of States' Median Credit Scores by Census Region, February 2020",
+    caption = "Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic",
+    x = "State Median Credit Score",
+    y = "Number of States"
+  )
+  
+
+         
+```
+
+This visualization shows how credit health varies among Census regions, as measured by the distribution of median state-level credit scores within each region. In Visualization 3, we see that while no states have a median credit score that is subprime, only the Southern Census region has no states with median credit scores in the super-prime range (credit scores between 720-850).This finding suggests that credit health has geographic variation in addition to race-based variation. Policymakers interested in improving consumers' credit health may consequently be interested in place-based policies, such as tax credits or targeted investments,  that can address regional variation in consumer credit (Theodos et al., 2022). 
+
+Citations:
+Theodos, B., Stacy, C., Teles, D., Davis, C., & Hariharan, A. (2022). Place‐based investment and neighborhood change: The impacts of New Markets Tax Credits on jobs, poverty, and neighborhood composition. Journal of Regional Science.
+
