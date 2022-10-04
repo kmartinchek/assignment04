@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Kassandra Martinchek - KM1775">
+
+<title>Data Science for Public Policy</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Science for Public Policy</h1>
+<p class="subtitle lead">Data Visualization, Quarto, and Git</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Kassandra Martinchek - KM1775 </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="project-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="project-introduction">Project Introduction</h2>
+<p>This data project explores trends in credit and debt in U.S. states in February 2020. The goal of this project is to understand disparities in credit health between states and communities and explore the potential implications of policies designed to strengthen consumer credit health.</p>
+</section>
+<section id="data-details" class="level2">
+<h2 class="anchored" data-anchor-id="data-details">Data Details</h2>
+<p>This project uses data from the Urban Institute’s “Credit Health during the COVID-19 Pandemic” data feature. This data is from a 2 percent random sample of deidentified consumer credit records from one of the main three credit bureaus linked to information on alternative financial service loans (such as payday, pawn shop, and auto title loans) from a Fair Credit Reporting Act regulated agency.</p>
+<p><strong>Citation:</strong> Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic</p>
+<p><strong>Hyperlink:</strong> https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic/resource/0f812245-6b99-4f13-b7e2-e3398a7dc10b</p>
+</section>
+<section id="clean-and-prepare-the-data-for-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="clean-and-prepare-the-data-for-visualization">Clean and Prepare the Data for Visualization</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load in relevant libraries for analysis</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(urbnthemes)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load in the data</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>credit_feb20 <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/covidcredithealth_state.xlsx"</span>, <span class="at">sheet =</span> <span class="st">"State 2020_02"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># rename column names to be snake case for analysis</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(credit_feb20) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"subprime_a"</span>, <span class="st">"subprime_c"</span>, <span class="st">"subprime_w"</span>, <span class="st">"collections_a"</span>, <span class="st">"collections_c"</span>, <span class="st">"collections_w"</span>, <span class="st">"med_debt_a"</span>, <span class="st">"med_debt_c"</span>, <span class="st">"med_debt_w"</span>, <span class="st">"cred_use_a"</span>, <span class="st">"cred_use_c"</span>, <span class="st">"cred_use_w"</span>, <span class="st">"stud_del_a"</span>, <span class="st">"stud_del_c"</span>, <span class="st">"stud_del_w"</span>, <span class="st">"cred_del_a"</span>, <span class="st">"cred_del_c"</span>, <span class="st">"cred_del_w"</span>, <span class="st">"auto_del_a"</span>, <span class="st">"auto_del_c"</span>, <span class="st">"auto_del_w"</span>, <span class="st">"mort_del_a"</span>, <span class="st">"mort_del_c"</span>, <span class="st">"mort_del_w"</span>, <span class="st">"afs_use_a"</span>, <span class="st">"afs_use_c"</span>, <span class="st">"afs_use_w"</span>, <span class="st">"afs_del_a"</span>, <span class="st">"afs_del_c"</span>, <span class="st">"afs_del_w"</span>, <span class="st">"score_a"</span>, <span class="st">"score_c"</span>, <span class="st">"score_w"</span>, <span class="st">"mmed_a"</span>, <span class="st">"mmed_c"</span>, <span class="st">"mmed_w"</span>, <span class="st">"medical_a"</span>, <span class="st">"medical_c"</span>, <span class="st">"medical_w"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># replace n/a values in strings</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>credit_feb20 <span class="ot">&lt;-</span> credit_feb20 <span class="sc">%&gt;%</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">everything</span>(), <span class="at">.fns =</span> <span class="sc">~</span><span class="fu">str_replace</span>(., <span class="st">"n/a"</span>, <span class="st">""</span>))) </span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># remove $ from median debt variables</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>credit_feb20 <span class="ot">&lt;-</span> credit_feb20 <span class="sc">%&gt;%</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">med_debt_a =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> med_debt_a, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">$"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">med_debt_c =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> med_debt_c, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">$"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">med_debt_w =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> med_debt_w, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">$"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mmed_a =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> mmed_a, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">$"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mmed_c =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> mmed_c, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">$"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mmed_w =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> mmed_w, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">$"</span>)) </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># make string data numeric</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>credit_feb20 <span class="ot">&lt;-</span> credit_feb20 <span class="sc">%&gt;%</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="sc">!</span>state, <span class="at">.fns =</span> <span class="sc">~</span><span class="fu">as.numeric</span>(.))) </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co"># add in the Census regions of the US to the data</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># reference to Census regions here: https://www2.census.gov/geo/pdfs/maps-data/maps/reference/us_regdiv.pdf</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>credit_feb20 <span class="ot">&lt;-</span> credit_feb20 <span class="sc">%&gt;%</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">case_when</span>(state <span class="sc">==</span> <span class="st">"CT"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"ME"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"MA"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"NH"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"RI"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"VT"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"NJ"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"NY"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"PA"</span> <span class="sc">~</span> <span class="st">"northeast"</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                            state <span class="sc">==</span> <span class="st">"IN"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"IL"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"MI"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"OH"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"WI"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"IA"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"KS"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"MN"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"MO"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"NE"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"ND"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"SD"</span> <span class="sc">~</span> <span class="st">"midwest"</span>, </span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>                            state <span class="sc">==</span> <span class="st">"DE"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"DC"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"FL"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"GA"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"MD"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"NC"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"SC"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"VA"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"WV"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"AL"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"KY"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"MS"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"TN"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"AR"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"LA"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"OK"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"TX"</span> <span class="sc">~</span> <span class="st">"south"</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>                            state <span class="sc">==</span> <span class="st">"AZ"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"CO"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"ID"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"NM"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"MT"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"UT"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"NV"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"WY"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"AK"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"CA"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"HI"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"OR"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"WA"</span> <span class="sc">~</span> <span class="st">"west"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="visualization-1-do-states-with-consumers-who-use-more-payday-loans-have-more-trouble-repaying-loans" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-1-do-states-with-consumers-who-use-more-payday-loans-have-more-trouble-repaying-loans">Visualization 1: Do States with Consumers Who Use More Payday Loans Have More Trouble Repaying Loans?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mapping AFS use against AFS delinquencies</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>credit_feb20 <span class="sc">%&gt;%</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> afs_use_a, <span class="at">y =</span> afs_del_a, <span class="at">shape =</span> region), <span class="at">color =</span> <span class="st">"#1696d2"</span>, <span class="at">size =</span> <span class="dv">2</span>)  <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">40</span>)) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> lm, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> afs_use_a, <span class="at">y =</span> afs_del_a), <span class="at">color =</span> <span class="st">"#fdbf11"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Census Region"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"States With More AFS Use Experience Greater Delinquencies"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"AFS Use and AFS Delinquencies by State, February 2020"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022.</span><span class="sc">\n</span><span class="st">Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. </span><span class="sc">\n</span><span class="st">Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic </span><span class="sc">\n</span><span class="st">Notes: Alternative financial services (AFS) loans include payday, auto title, and pawn shop loans provided by non-bank lenders. </span><span class="sc">\n</span><span class="st">AFS delinquencies are loans that are 30 or more days past due."</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Share of Consumers Using AFS"</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Share of Consumers With AFS Delinquencies"</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This visualization shows the relationship between use of alternative financial services (AFS) and AFS delinquency rates. We see in Visualization 1 see that there is a slight positive relationship between AFS use and AFS delinquency across Census regions, where states with more consumers who use AFS services also exhibit higher AFS delinquency rates. Scholars and policymakers are concerned about how AFS use impacts consumers’ financial health, given research that points to AFS use negatively impacting mental and physical health, bankruptcy, and consumers’ ability to repay loans (Bhutta et al., 2016; Eisenberg-Guyot et al., 2018; Skiba &amp; Tobacman, 2019). Consequently, policymakers have increasingly pursued policies that regulate the interest rates that lenders can charge consumers, with the goal of reducing AFS use. Visualization 1 suggests that these efforts may be associated with a reduction in AFS delinquencies, thus improving consumer’s credit health as they may no longer struggle to repay high-cost loans (like AFS).</p>
+<p><strong>Citations</strong></p>
+<p>Bhutta, N., Goldin, J., &amp; Homonoff, T. (2016). Consumer borrowing after payday loan bans. <em>The Journal of Law and Economics, 59</em>(1), 225-259.</p>
+<p>Eisenberg-Guyot, J., Firth, C., Klawitter, M., &amp; Hajat, A. (2018). From payday loans to pawnshops: Fringe banking, the unbanked, and health. <em>Health Affairs</em>, 37(3), 429-437.</p>
+<p>Skiba, P. M., &amp; Tobacman, J. (2019). Do payday loans cause bankruptcy?. <em>The Journal of Law and Economics, 62</em>(3), 485-519.</p>
+</section>
+<section id="visualization-2-do-communities-of-color-have-poorer-credit-than-majority-white-communities-in-the-dmv" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-2-do-communities-of-color-have-poorer-credit-than-majority-white-communities-in-the-dmv">Visualization 2: Do Communities of Color Have Poorer Credit Than Majority-White Communities in the DMV?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set urban theme</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_urbn_defaults</span>(<span class="at">style =</span> <span class="st">"print"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># filter data to states in the DMV</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a> dmv_credit <span class="ot">&lt;-</span> credit_feb20 <span class="sc">%&gt;%</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"DC"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"MD"</span> <span class="sc">|</span> state <span class="sc">==</span> <span class="st">"VA"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(state, subprime_a, subprime_c, subprime_w)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># transform data set from wide to long for visualization</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  viz2 <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> dmv_credit,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">c</span>(subprime_a, subprime_c, subprime_w),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"community"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"share"</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># recode community variable for visualization</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  viz2 <span class="ot">&lt;-</span> viz2 <span class="sc">%&gt;%</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">community =</span> <span class="fu">case_when</span>(community <span class="sc">==</span> <span class="st">"subprime_a"</span> <span class="sc">~</span> <span class="st">"all"</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                               community <span class="sc">==</span> <span class="st">"subprime_c"</span> <span class="sc">~</span> <span class="st">"comm col"</span>,</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                               community <span class="sc">==</span> <span class="st">"subprime_w"</span> <span class="sc">~</span> <span class="st">"white"</span>))</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># stacked bar chart for each state</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  viz2 <span class="sc">%&gt;%</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> state, <span class="at">y =</span> share, <span class="at">fill =</span> community)) <span class="sc">+</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>, <span class="at">stat =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_fill_discrete</span>(<span class="at">name =</span> <span class="st">"Community"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"All Communities"</span>, <span class="st">"Communities of Color"</span>, <span class="st">"Majority White Communities"</span>)) <span class="sc">+</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> share), <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Communities of Color in the District Have Poorer Credit Health"</span>,</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Share of Consumers with Subprime Credit Scores by Community in Maryland, DC, and Virginia, February 2020"</span>,</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. </span><span class="sc">\n</span><span class="st">Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. </span><span class="sc">\n</span><span class="st">Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic </span><span class="sc">\n</span><span class="st"> Notes: Subprime credit is defined as Vantage credit scores under 600. Vantage credit scores range from 300 to 850."</span>,</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"State"</span>,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Share of Consumers With Subprime Credit Scores"</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This visualization shows how credit health, as measured by the share of consumers with subprime credit, varies among communities in the DMV. Consumers with subprime credit, or credit scores below 600, pay more to borrow funds and have constrained access to low cost credit. We see in Visualization 2 that communities of color in DC, Maryland, and Virginia have higher shares of consumers with subprime credit relative to majority-white communities. This finding reflects a history of structural racism in credit access that has persisted to present day (Kijakazi et al., 2019). Consequently, policymakers interested in addressing disparities in credit health that persist across communities need to consider policies that explicitly address racial disparities.</p>
+<p><strong>Citations</strong></p>
+<p>Kijakazi, K., Brown, S., Charleston, D., &amp; Runes, C. (2019). Next50 Catalyst Brief: Structural Racism. <em>Urban Institute.</em></p>
+</section>
+<section id="visualization-3-how-do-regions-vary-in-their-median-credit-scores-is-there-geographic-variation-in-credit-health-in-the-us" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-3-how-do-regions-vary-in-their-median-credit-scores-is-there-geographic-variation-in-credit-health-in-the-us">Visualization 3: How Do Regions Vary In Their Median Credit Scores? Is There Geographic Variation in Credit Health in the US?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set urban theme</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set_urbn_defaults</span>(<span class="at">style =</span> <span class="st">"print"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>prime <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Super-Prime"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>subprime <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Prime"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create histograms of median credit score by region</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>credit_feb20 <span class="sc">%&gt;%</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> score_a), <span class="at">binwidth =</span> <span class="dv">25</span>) <span class="sc">+</span> </span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">600</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">720</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">600</span>, <span class="at">y =</span> <span class="dv">10</span>, <span class="at">label =</span> subprime), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">720</span>, <span class="at">y =</span> <span class="dv">10</span>, <span class="at">label =</span> prime), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"600"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"720"</span> <span class="ot">=</span> <span class="st">"blue"</span>)) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> region) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Southern States Have Worse Credit Health Than Other Areas of the US"</span>,</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Distribution of States' Median Credit Scores by Census Region, February 2020"</span>,</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. </span><span class="sc">\n</span><span class="st">Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. </span><span class="sc">\n</span><span class="st">Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic </span><span class="sc">\n</span><span class="st">Notes: Subprime credit is defined as Vantage credit scores under 600.Superprime credit is defined as Vantage credit scores over 720. </span><span class="sc">\n</span><span class="st">Vantage credit scores range from 300 to 850."</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"State Median Credit Score"</span>,</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of States"</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This visualization shows how credit health varies among Census regions, as measured by the distribution of median state-level credit scores within each region. In Visualization 3, we see that while no states have a median credit score that is subprime, only the Southern Census region has no states with median credit scores in the super-prime range (credit scores between 720-850).This finding suggests that credit health has geographic variation in addition to race-based variation. Policymakers interested in improving consumers’ credit health may consequently be interested in place-based policies, such as tax credits or targeted investments, that can address regional variation in consumer credit (Theodos et al., 2022).</p>
+<p><strong>Citations</strong></p>
+<p>Theodos, B., Stacy, C., Teles, D., Davis, C., &amp; Hariharan, A. (2022). Place‐based investment and neighborhood change: The impacts of New Markets Tax Credits on jobs, poverty, and neighborhood composition. <em>Journal of Regional Science</em>.</p>
+</section>
+<section id="visualization-4-which-states-would-benefit-from-expanded-policy-guidance-on-medical-debt-reporting" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-4-which-states-would-benefit-from-expanded-policy-guidance-on-medical-debt-reporting">Visualization 4: Which States Would Benefit From Expanded Policy Guidance on Medical Debt Reporting?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.height: 10</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set urban theme</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set_urbn_defaults</span>(<span class="at">style =</span> <span class="st">"print"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create the visualization--- color is not working perfectly</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>credit_feb20 <span class="sc">%&gt;%</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">med_over500 =</span> <span class="fu">if_else</span>(mmed_a <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="st">"#1696d2"</span>, <span class="st">"#fdbf11"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mmed_a)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mmed_a, <span class="at">y =</span> <span class="fu">reorder</span>(state, <span class="sc">-</span>mmed_a), <span class="at">fill =</span> med_over500)) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Over $500"</span>, <span class="st">"Under $500"</span>)) <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Most States Could Benefit from Expanded Debt Limits for Medical Debt Credit Reporting"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Median Medical Debt in Collections by State, February 2020"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Data Source: Kassandra Martinchek, Alex Carther, Breno Braga, Caleb Quakenbush, and Signe-Mary McKernan. 2022. </span><span class="sc">\n</span><span class="st">Credit Health during the COVID-19 Pandemic Dataset. Urban Institute. </span><span class="sc">\n</span><span class="st">Accessible from https://datacatalog.urban.org/dataset/credit-health-during-covid-19-pandemic </span><span class="sc">\n</span><span class="st">Notes: Median medical debt measures the median amount of medical debt in collections held by consumers with </span><span class="sc">\n</span><span class="st">any medical debt reported on their credit report."</span>,</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Median Amount of Medical Debt in Collections"</span>,</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"State"</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This visualization shows how the median amount of medical debt held by consumers varies across states. In April 2022, the Biden Administration and credit reporting companies acted together to stop reporting medical debt trade lines (or individual medical debt bills) under 500 dollars on consumers’ credit reports (White House, 2022). The motivation around this policy was that medical debt was not predictive of consumers’ ability to repay, which is what credit reporting aims to capture, and often hobbles consumers’ financial health to great personal cost when it is reported on consumer credit records (Batty et al., 2021). While this policy change will undoubtedly help millions of consumers with hard-to-repay medical debt, many consumers may have medical debt that exceeds the 500 dollar limit, as evidenced in Visualization 4 where most states have median medical debt in collections that exceeds 500 dollars. Consequently, policymakers interested in addressing the financial implications of medical care should consider increasing the amount of medical debt that is not reported to credit agencies.</p>
+<p><strong>Citations</strong></p>
+<p>Batty, M., Gibbs, C., &amp; Ippolito, B. (2021). Health insurance, medical debt, and financial well-being. American Enterprise Institute Working Paper. Accessible from: https://www.aei.org/wp-content/uploads/2021/03/Batty-Gibbs-Ippolito-health-insurance-medical-debt-financial-well-being-WP.pdf?x91208</p>
+<p>White House. (2022). FACT SHEET: The Biden Administration Announces New Actions to Lessen the Burden of Medical Debt and Increase Consumer Protection. Accessible from: https://www.whitehouse.gov/briefing-room/statements-releases/2022/04/11/fact-sheet-the-biden-administration-announces-new-actions-to-lessen-the-burden-of-medical-debt-and-increase-consumer-protection/</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
