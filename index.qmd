@@ -133,6 +133,7 @@ set_urbn_defaults(style = "print")
   viz2 %>%
     ggplot(aes(x = state, y = share, fill = community)) +
     geom_bar(position = "dodge", stat = "identity") +
+    theme(panel.grid.major.y = element_blank()) +
     scale_fill_discrete(name = "Community", labels = c("All Communities", "Communities of Color", "Majority White Communities")) +
     coord_flip() +
     theme(legend.position = "top") +
@@ -168,10 +169,11 @@ subprime <- c("Prime")
 credit_feb20 %>%
   ggplot() +
   geom_histogram(mapping = aes(x = score_a), binwidth = 25) + 
+  coord_cartesian(xlim = c(300, 850)) +
   geom_vline(xintercept = 600, color = "red") +
   geom_vline(xintercept = 720, color = "blue") +
-  geom_text(aes(x = 600, y = 10, label = subprime), size = 3, hjust = -0.1) +
-  geom_text(aes(x = 720, y = 10, label = prime), size = 3, hjust = -0.1) +
+  geom_text(aes(x = 600, y = 13, label = subprime), size = 3, hjust = -0.1) +
+  geom_text(aes(x = 720, y = 13, label = prime), size = 3, hjust = -0.1) +
   scale_color_manual(values = c("600" = "red", "720" = "blue")) +
   facet_wrap(~ region) +
   labs(
@@ -205,6 +207,7 @@ credit_feb20 %>%
   arrange(desc(mmed_a)) %>%
   ggplot() +
   geom_col(mapping = aes(x = mmed_a, y = reorder(state, -mmed_a), fill = med_over500)) +
+  theme(panel.grid.major.y = element_blank()) +
   scale_fill_discrete(labels = c("Over $500", "Under $500")) +
     labs(
     title = "Most States Could Benefit from Expanded Debt Limits for Medical Debt Credit Reporting",
