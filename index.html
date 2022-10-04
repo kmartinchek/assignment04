@@ -197,7 +197,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Share of Consumers With AFS Delinquencies"</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <p>This visualization shows the relationship between use of alternative financial services (AFS) and AFS delinquency rates. We see in Visualization 1 see that there is a slight positive relationship between AFS use and AFS delinquency across Census regions, where states with more consumers who use AFS services also exhibit higher AFS delinquency rates. Scholars and policymakers are concerned about how AFS use impacts consumers’ financial health, given research that points to AFS use negatively impacting mental and physical health, bankruptcy, and consumers’ ability to repay loans (Bhutta et al., 2016; Eisenberg-Guyot et al., 2018; Skiba &amp; Tobacman, 2019). Consequently, policymakers have increasingly pursued policies that regulate the interest rates that lenders can charge consumers, with the goal of reducing AFS use. Visualization 1 suggests that these efforts may be associated with a reduction in AFS delinquencies, thus improving consumer’s credit health as they may no longer struggle to repay high-cost loans (like AFS).</p>
@@ -248,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Share of Consumers With Subprime Credit Scores"</span></span>
 <span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <p>This visualization shows how credit health, as measured by the share of consumers with subprime credit, varies among communities in the DMV. Consumers with subprime credit, or credit scores below 600, pay more to borrow funds and have constrained access to low cost credit. We see in Visualization 2 that communities of color in DC, Maryland, and Virginia have higher shares of consumers with subprime credit relative to majority-white communities. This finding reflects a history of structural racism in credit access that has persisted to present day (Kijakazi et al., 2019). Consequently, policymakers interested in addressing disparities in credit health that persist across communities need to consider policies that explicitly address racial disparities.</p>
@@ -282,7 +282,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of States"</span></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <p>This visualization shows how credit health varies among Census regions, as measured by the distribution of median state-level credit scores within each region. In Visualization 3, we see that while no states have a median credit score that is subprime, only the Southern Census region has no states with median credit scores in the super-prime range (credit scores between 720-850).This finding suggests that credit health has geographic variation in addition to race-based variation. Policymakers interested in improving consumers’ credit health may consequently be interested in place-based policies, such as tax credits or targeted investments, that can address regional variation in consumer credit (Theodos et al., 2022).</p>
@@ -292,12 +292,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="visualization-4-which-states-would-benefit-from-expanded-policy-guidance-on-medical-debt-reporting" class="level2">
 <h2 class="anchored" data-anchor-id="visualization-4-which-states-would-benefit-from-expanded-policy-guidance-on-medical-debt-reporting">Visualization 4: Which States Would Benefit From Expanded Policy Guidance on Medical Debt Reporting?</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.height: 10</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|fig-height: 10</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set urban theme</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set_urbn_defaults</span>(<span class="at">style =</span> <span class="st">"print"</span>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create the visualization--- color is not working perfectly</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># create the visualization</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>credit_feb20 <span class="sc">%&gt;%</span></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">med_over500 =</span> <span class="fu">if_else</span>(mmed_a <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="st">"#1696d2"</span>, <span class="st">"#fdbf11"</span>)) <span class="sc">%&gt;%</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(mmed_a)) <span class="sc">%&gt;%</span></span>
@@ -312,7 +312,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"State"</span></span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="768"></p>
 </div>
 </div>
 <p>This visualization shows how the median amount of medical debt held by consumers varies across states. In April 2022, the Biden Administration and credit reporting companies acted together to stop reporting medical debt trade lines (or individual medical debt bills) under 500 dollars on consumers’ credit reports (White House, 2022). The motivation around this policy was that medical debt was not predictive of consumers’ ability to repay, which is what credit reporting aims to capture, and often hobbles consumers’ financial health to great personal cost when it is reported on consumer credit records (Batty et al., 2021). While this policy change will undoubtedly help millions of consumers with hard-to-repay medical debt, many consumers may have medical debt that exceeds the 500 dollar limit, as evidenced in Visualization 4 where most states have median medical debt in collections that exceeds 500 dollars. Consequently, policymakers interested in addressing the financial implications of medical care should consider increasing the amount of medical debt that is not reported to credit agencies.</p>
